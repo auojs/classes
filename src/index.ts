@@ -21,7 +21,7 @@ export function indexOf<T = string>(arr: T[], obj: T): number {
  * @export
  * @class Classes
  */
-class ClassesApi {
+class ClassesApi<T extends Element> {
   /**
    * classList
    *
@@ -32,9 +32,9 @@ class ClassesApi {
 
   /**
    * Creates an instance of Classes.
-   * @param {Element} el
+   * @param {T} el
    */
-  constructor(private readonly el: Element) {
+  constructor(private readonly el: T) {
     this.list = el.classList;
   }
 
@@ -170,6 +170,6 @@ class ClassesApi {
   }
 }
 
-export default function classes(el: Element): ClassesApi {
-  return new ClassesApi(el);
+export default function classes<T extends Element>(el: T): ClassesApi<T> {
+  return new ClassesApi<T>(el);
 }
